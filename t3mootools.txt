@@ -1,0 +1,2 @@
+script = res/js/multibox.js,res/js/overlay.js
+components=Window.DomReady
