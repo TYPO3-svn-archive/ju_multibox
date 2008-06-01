@@ -1,0 +1,269 @@
+#######################################################################################
+#
+#				TypoScript Setup fuer Multibox
+#				erstellt von Jonathan Uhlmann
+#				www.augenreiz.ch // uhlmann@augenreiz.ch 
+#
+#######################################################################################
+
+includeLibs.jumultibox = EXT:ju_multibox/class.tx_jumultibox.php
+
+
+temp.options = COA
+temp.options {
+	wrap = <script type="text/javascript">var box={};window.addEvent('domready',function(){ box = new MultiBox('mb', { | }); });</script>
+	10 = TEXT
+	10 {
+		value = initialWidth: '{$plugin.ju_multibox.options.initialWidth}',
+		if.equals = 250
+		if.value = {$plugin.ju_multibox.options.initialWidth}
+		if.negate = 1
+	}
+	20 = TEXT
+	20 {
+		value = initialHeight: '{$plugin.ju_multibox.options.initialHeight}',
+		if.equals = 250
+		if.value = {$plugin.ju_multibox.options.initialHeight}
+		if.negate = 1
+	}
+	30 = COA
+	30 {
+		if.isTrue = {$plugin.ju_multibox.options.useOverlay}
+		30 = TEXT
+		30.value = useOverlay: 'true',
+		40 = TEXT
+		40 {
+			value = container: '{$plugin.ju_multibox.options.container}',
+			if.equals = document.body
+			if.value = {$plugin.ju_multibox.options.container}
+			if.negate = 1
+		}
+		50 = TEXT
+		50 {
+			value = overlayColor: '{$plugin.ju_multibox.options.overlayColor}',
+			if.equals = #000
+			if.value = {$plugin.ju_multibox.options.overlayColor}
+			if.negate = 1
+		}
+		60 = TEXT
+		60 {
+			value = {$plugin.ju_multibox.options.overlayOpacity}/100
+			prioriCalc = 1
+			wrap = overlayOpacity: '|',
+			if.equals = 70
+			if.value = {$plugin.ju_multibox.options.overlayOpacity}
+			if.negate = 1
+		}
+	}
+	70 = TEXT
+	70 {
+		value = contentColor: '{$plugin.ju_multibox.options.contentColor}',
+		if.equals = #FFF
+		if.value = {$plugin.ju_multibox.options.contentColor}
+		if.negate = 1
+	}
+	80 = TEXT
+	80 {
+		value = showNumbers: 'false',
+		if.isFalse = {$plugin.ju_multibox.options.showNumbers}
+	}
+	90 = TEXT
+	90 {
+		value = showControls: 'false',
+		if.isFalse = {$plugin.ju_multibox.options.showControls}
+	}
+	100 = TEXT
+	100 {
+		value = movieWidth: '{$plugin.ju_multibox.options.movieWidth}',
+		if.equals = 700
+		if.value = {$plugin.ju_multibox.options.movieWidth}
+		if.negate = 1
+	}
+	110 = TEXT
+	110 {
+		value = movieHeight: '{$plugin.ju_multibox.options.movieHeight}',
+		if.equals = 500
+		if.value = {$plugin.ju_multibox.options.movieHeight}
+		if.negate = 1
+	}
+	120 = TEXT
+	120 {
+		if.equals = 0,0
+		if.value = {$plugin.ju_multibox.options.offset}
+		if.negate = 1
+		wrap = offset: { | },
+		value = {$plugin.ju_multibox.options.offset}
+		split {
+			token = ,
+			cObjNum = |*| 1 |*| 2
+			1.current = 1
+			1.trim = 1
+			1.wrap = x:|,y:
+			2.current = 1
+			2.trim = 1
+		}
+	}
+	130 = TEXT
+	130 {
+		value = fixedTop: '{$plugin.ju_multibox.options.fixedTop}',
+		if.isTrue = {$plugin.ju_multibox.options.fixedTop}
+	}
+	140 = TEXT
+	140 {
+		value = {$plugin.ju_multibox.options.path}/
+		override {
+			if.equals = {$plugin.ju_multibox.options.path}
+			if.value = EXT:ju_multibox/res/player
+			preUserFunc = tx_jumultibox->pathToPlayer
+		}
+		wrap = path: ' | ',
+	}
+	150 = TEXT
+	150 {
+		value = onOpen: '{$plugin.ju_multibox.options.onOpen}',
+		if.equals = Class.empty
+		if.value = {$plugin.ju_multibox.options.onOpen}
+		if.negate = 1
+	}
+	160 = TEXT
+	160 {
+		value = onOpen: '{$plugin.ju_multibox.options.onClose}',
+		if.equals = Class.empty
+		if.value = {$plugin.ju_multibox.options.onClose}
+		if.negate = 1
+	}
+	170 = TEXT
+	170 {
+		value = openFromLink: 'false',
+		if.isFalse = {$plugin.ju_multibox.options.openFromLink}
+	}
+	500 = TEXT
+	500 {
+		value = stringImageCount: ' {LLL:EXT:ju_multibox/locallang.xml:of} '
+		insertData = 1
+	}
+}
+
+
+page.headerData.2135 = COA
+page.headerData.2135 {
+	10 = TEXT
+	10 {
+		value = <link rel="stylesheet" href="{path:{$plugin.ju_multibox.res.multiboxCSS}}" type="text/css" media="screen" />
+		if.isTrue = {$plugin.ju_multibox.insert.multiboxCSS}
+		insertData = 1
+	}
+	20 = TEXT
+	20 {
+		value = <!--[if lte IE 6]><link rel="stylesheet" href="{path:{$plugin.ju_multibox.res.multiboxCSSforIE6}}" type="text/css" media="all" /><![endif]-->
+		if.isTrue = {$plugin.ju_multibox.insert.multiboxCSSforIE6}
+		insertData = 1
+	}
+	50 = TEXT
+	50 {
+			value = <script type="text/javascript" src="{path:{$plugin.ju_multibox.res.mootoolsJS}}"></script>
+			if.isTrue = {$plugin.ju_multibox.insert.mootoolsJS}
+			insertData = 1
+	}
+	60 = TEXT
+	60 {
+			value = <script type="text/javascript" src="{path:{$plugin.ju_multibox.res.multiboxJS}}"></script>
+			if.isTrue = {$plugin.ju_multibox.insert.multiboxJS}
+			insertData = 1
+	}
+	70 = TEXT
+	70 {
+			value = <script type="text/javascript" src="{path:{$plugin.ju_multibox.res.overlayJS}}"></script>
+			if.value = {$plugin.ju_multibox.insert.overlayJS}{$plugin.ju_multibox.options.useOverlay}
+			if.equals = 11
+			insertData = 1
+	}
+	80 < temp.options
+
+}
+
+tt_content.image.20.1 {
+	titleText.field = {$plugin.ju_multibox.imgtext.captionField}
+	titleText.htmlSpecialChars = 1
+	# Removing the default "imageLinkWrap" TS code, and add new one to enable Multibox effect.
+	imageLinkWrap >
+	imageLinkWrap = 1
+	imageLinkWrap {
+		# Enable linkwrapping if either click-enlarge is selected or a link is defined.
+		enable.field = image_zoom
+		enable.ifEmpty.typolink.parameter.field = image_link
+		enable.ifEmpty.typolink.parameter.listNum.stdWrap.data = register : IMAGE_NUM_CURRENT
+		enable.ifEmpty.typolink.returnLast = url
+		# Add new typolink wrapping code
+		typolink {
+			target = {$styles.content.links.target}
+			extTarget = {$styles.content.links.extTarget}
+			# This returns a link, pointing to the path + name of the original image.
+			# or to the path + name of the resized multibox image (if maxH or maxW is reached.)
+			parameter.cObject = IMG_RESOURCE
+			parameter.cObject.file.import.data = TSFE:lastImageInfo|origFile
+			parameter.cObject.file.maxW = {$plugin.ju_multibox.imgMaxW}
+			parameter.cObject.file.maxH = {$plugin.ju_multibox.imgMaxH}
+	
+			# Except if the linkfield is not empty
+			parameter.override.field = image_link
+			parameter.override.listNum.stdWrap.data = register : IMAGE_NUM_CURRENT
+			parameter.override.if.isTrue.field = image_link
+		
+			# Add the class is needed to activate the multibox effect.
+			ATagParams = class="mb"
+			ATagParams.if.isTrue.field = image_zoom
+
+		}
+	}
+}
+
+tt_content.textpic.20.1 < tt_content.image.20.1
+
+temp.imageLinkWrap = 1
+temp.imageLinkWrap {
+	enable = 1
+	# Add new typolink wrapping code
+	typolink {
+		# Set the title of the A tag, which is used as caption inside the Multibox
+		title.field = {$plugin.ju_multibox.tt_news.captionField}
+		title.split.token.char = 10
+		title.split.returnKey.data = register : IMAGE_NUM_CURRENT
+		title.htmlSpecialChars = 1			
+		# This returns a link, pointing to the path + name of the original image.
+		# or to the path + name of the resized Multibox image (if maxH or maxW is reached.)
+		parameter.cObject = IMG_RESOURCE
+		parameter.cObject.file.import.data = TSFE:lastImageInfo|origFile
+		parameter.cObject.file.maxW = {$plugin.ju_multibox.imgMaxW}
+		parameter.cObject.file.maxH = {$plugin.ju_multibox.imgMaxH}	
+		# Add the class is needed to activate the multibox effect.
+		ATagParams = class="mb"
+		ATagParams.if.isTrue.field = image_zoom
+	}
+}
+
+
+
+[globalVar = LIT:1 = {$plugin.ju_starter.tt_news.enable.single}]
+# Change "imageLinkWrap" for the "displaySingle" object of tt_news
+plugin.tt_news.displaySingle.image.imageLinkWrap >
+plugin.tt_news.displaySingle.image.imageLinkWrap < temp.imageLinkWrap
+[GLOBAL]
+
+[globalVar = LIT:1 = {$plugin.ju_starter.tt_news.enable.latest}]
+# Change "imageLinkWrap" for the "displayLatest" object of tt_news
+plugin.tt_news.displayLatest.image.imageLinkWrap >
+plugin.tt_news.displayLatest.image.imageLinkWrap < temp.imageLinkWrap
+[GLOBAL]
+
+[globalVar = LIT:1 = {$plugin.ju_starter.tt_news.enable.list}]
+# Change "imageLinkWrap" for the "displayList" object of tt_news
+plugin.tt_news.displayList.image.imageLinkWrap >
+plugin.tt_news.displayList.image.imageLinkWrap < temp.imageLinkWrap
+[GLOBAL]
+
+[globalVar = LIT:1 = {$plugin.ju_starter.tt_news.enable.listSingleView}]
+# Enable displaying tt_news singleView inside the multibox
+plugin.tt_news.displayList.linkTitleField = title
+plugin.tt_news.displayList.linkTitleField.wrap = |" class="mb" rel="width:{$plugin.ju_starter.tt_news.display.width},height:{$plugin.ju_starter.tt_news.display.height},ajax:{$plugin.ju_starter.tt_news.display.ajax}
+[GLOBAL]

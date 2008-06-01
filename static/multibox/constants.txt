@@ -1,0 +1,99 @@
+#######################################################################################
+#
+#				TypoScript Constants fuer Multibox
+#				erstellt von Jonathan Uhlmann
+#				www.augenreiz.ch // uhlmann@augenreiz.ch
+#
+#######################################################################################
+
+plugin.ju_multibox {
+	options {
+		# cat=Multibox//a-001; type=int+; label = initial width: The initial width of the Multibox.
+		initialWidth = 250
+		# cat=Multibox//a-002; type=int+; label = initial height: The initial height of the Multibox
+		initialHeight = 250
+		# cat=Multibox//a-003; type=boolean; label = use overlay: use a semi-transparent background
+		useOverlay = 0
+		# cat=Multibox//a-004; type=small; label = container: the containing element for the overlay if used (useOverlay is set to true)
+		container = document.body
+		# cat=Multibox//a-005; type=color; label = overlay color: color of the overlay if used (useOverlay is set to true)
+		overlayColor = #000
+		# cat=Multibox//a-006; type=int[0-100]; label = overlay opacity: transparency of the overlay if used (useOverlay is set to true)
+		overlayOpacity = 70
+		# cat=Multibox//a-007; type=color; label = content color: the color of the background in the window
+		contentColor = #FFF
+		# cat=Multibox//a-008; type=boolean; label = show numbers: show numbers or not
+		showNumbers = 1
+		# cat=Multibox//a-009; type=boolean; label = show controls: show controls or not
+		showControls = 1
+		# cat=Multibox//a-010; type=int+; label = movie width: The width of movies in the Multibox
+		movieWidth = 700
+		# cat=Multibox//a-011; type=int+; label = movie height: The height of movies in the Multibox
+		movieHeight = 500
+		# cat=Multibox//a-012; type=offset; label = offest: object containing x,y offsets for the opened Multibox. 
+		offset = 0,0
+		# cat=Multibox//a-013; type=int+; label = fixed top: the value from the top that the box should open to.
+		fixedTop = 0
+		# cat=Multibox//a-014; type=text; label = path: path to the media players. without the trailing slash (/)
+		path = EXT:ju_multibox/res/player
+		# cat=Multibox//a-015; type=boolean; label = open from link: should the box open from the link or from the center of the window
+		openFromLink = 1
+		# cat=Multibox//a-016; type=small; label = on open function: a function to call when the box opens.
+		onOpen = Class.empty
+		# cat=Multibox//a-017; type=small; label = on close function: a function to call when the box closes.
+		onClose = Class.empty	
+	}
+	insert {
+		# cat=Multibox//b-001; type=boolean; label = insert mootools Javascript: insert the javascript library mootools version 1.11
+		mootoolsJS = 1
+		# cat=Multibox//b-002; type=boolean; label = insert Multibox Javascript: insert the javascript for the Multibox
+		multiboxJS = 1
+		# cat=Multibox//b-003; type=boolean; label = insert overlay Javascript: insert the javascript for the overlay. It only get insert if useOverlay is enabled.
+		overlayJS = 1
+		# cat=Multibox//b-004; type=boolean; label = insert Multibox CSS: insert the CSS for the Multibox
+		multiboxCSS = 1
+		# cat=Multibox//b-004; type=boolean; label = insert Multibox CSS for IE6: insert the CSS for IE6 (png fix with .htc file)
+		multiboxCSSforIE6 = 1
+	}
+	res {
+		# cat=Multibox//c-001; type=file[js]; label = Mootools Javascript Library: You only need to change this if you are using Mootools, and need some functions not in the included in the one used as default. (A full version of Mootools v1.11 is lotated at EXT:ju_multibox/res/scripts/mootools-release-1.11_complete.js)
+		mootoolsJS = EXT:ju_multibox/res/js/mootools-release-1.11.js
+		mootoolsJS = EXT:ju_multibox/res/js/mootools.js
+		# cat=Multibox//c-002; type=file[js]; label = Multibox Javascript: You will only need to change this, if you want to use a different version of the Multibox script.
+		multiboxJS = EXT:ju_multibox/res/js/multibox.js
+		# cat=Multibox//c-003; type=file[js]; label = Overlay Javascript: You will only need to change this, if you want to use a different version of the Overlay script.
+		overlayJS = EXT:ju_multibox/res/js/overlay.js
+		# cat=Multibox//c-004; type=file[css]; label = CSS for Multibox: CSS for the Multibox
+		multiboxCSS = EXT:ju_multibox/res/css/multibox.css
+		# cat=Multibox//c-005; type=file[css]; label = CSSfix fpr IE6: IE6 fix for the Multibox (png fix with .htc file)
+		multiboxCSSforIE6 = EXT:ju_multibox/res/css/ie6.css
+	}
+	# cat=Multibox//d-001; type=int+; label = Max Image Width: Defines the maxwidth of the image shown in the Multibox.
+	imgMaxW = 800
+	# cat=Multibox//d-002; type=int+; label = Max Image Height: Defines the maxheight of the image shown in the Multibox.
+	imgMaxH = 600
+	# cat=Multibox//d-003; type=options[titleText,altText,imagecaption]; label = tt_content Caption Field: tt_content field to use as caption inside the Multibox.
+	imgtext.captionField = titleText
+	# cat=Multibox//d-004; type=options[imagetitletext,imagealttext,imagecaption]; label = tt_news Caption Field: tt_news field to use as caption inside the Multibox.
+	tt_news.captionField = imagetitletext
+	tt_news {
+		enable {
+			# cat=Multibox//e-001; type=boolean; label = Enable Multibox in displaySingle : If set, LightBox effect will be available in tt_news SingleView when you click on an image.
+			single = 1
+			# cat=Multibox//e-002; type=boolean; label = Enable Multibox in displayLatest : If set, LightBox effect will be available in tt_news LatestView when you click on an image.
+			latest = 1
+			# cat=Multibox//e-003; type=boolean; label = Enable Multibox in displayList : If set, LightBox effect will be available in tt_news ListView when you click on an image.
+			list = 1
+			# cat=Multibox//e-004; type=boolean; label = Enable singleView in Multibox : If set, tt_news SingleView will be shown inside a Multibox.
+			listSingleView = 0
+		}
+		display {
+			# cat=Multibox//f-001; type=int+; label = Multibox tt_news width : Used to set the width of the LightBox if displaying tt_news SingleView in Multibox is enabled.
+			width = 550
+			# cat=Multibox//f-002; type=int+; label = Multibox tt_news height : Used to set the height of the LightBox if displaying tt_news SingleView in Multibox is enabled.
+			height = 400
+			# cat=Multibox//f-003; type=options[Use AJAX=true,Use an iFrame=false]; label = Multibox tt_news mode: Use AJAX or an iFrame to include tt_news.
+			ajax = true
+		}
+	}
+}
