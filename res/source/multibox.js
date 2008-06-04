@@ -55,7 +55,6 @@ var MultiBox = new Class({
 		if(this.options.useOverlay){
 			this.overlay = new Overlay({container: this.options.container, color: this.options.overlayColor, opacity: this.options.overlayOpacity, onClick:this.close.bind(this)});
 		}
-		
 		this.content = $$('.'+className);
 		if(this.options.descClassName){
 			this.descriptions = $$('.'+this.options.descClassName);
@@ -96,6 +95,7 @@ var MultiBox = new Class({
 		
 		
 		
+		
 		if(this.content.length == 1){
 			this.title.setStyles({
 				'margin-left': 0
@@ -127,7 +127,6 @@ var MultiBox = new Class({
 		
 		this.reset();
 	},
-	
 	setContentType: function(link){
 		var str = link.href.substr(link.href.lastIndexOf('.')+1).toLowerCase();
 		var contentOptions = {};

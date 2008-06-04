@@ -14,14 +14,14 @@ temp.options {
 	wrap = <script type="text/javascript">var box={};window.addEvent('domready',function(){ box = new MultiBox('mb', { | }); });</script>
 	10 = TEXT
 	10 {
-		value = initialWidth: '{$plugin.ju_multibox.options.initialWidth}',
+		value = initialWidth: {$plugin.ju_multibox.options.initialWidth},
 		if.equals = 250
 		if.value = {$plugin.ju_multibox.options.initialWidth}
 		if.negate = 1
 	}
 	20 = TEXT
 	20 {
-		value = initialHeight: '{$plugin.ju_multibox.options.initialHeight}',
+		value = initialHeight: {$plugin.ju_multibox.options.initialHeight},
 		if.equals = 250
 		if.value = {$plugin.ju_multibox.options.initialHeight}
 		if.negate = 1
@@ -30,10 +30,10 @@ temp.options {
 	30 {
 		if.isTrue = {$plugin.ju_multibox.options.useOverlay}
 		30 = TEXT
-		30.value = useOverlay: 'true',
+		30.value = useOverlay: true,
 		40 = TEXT
 		40 {
-			value = container: '{$plugin.ju_multibox.options.container}',
+			value = container: {$plugin.ju_multibox.options.container},
 			if.equals = document.body
 			if.value = {$plugin.ju_multibox.options.container}
 			if.negate = 1
@@ -49,7 +49,7 @@ temp.options {
 		60 {
 			value = {$plugin.ju_multibox.options.overlayOpacity}/100
 			prioriCalc = 1
-			wrap = overlayOpacity: '|',
+			wrap = overlayOpacity: |,
 			if.equals = 70
 			if.value = {$plugin.ju_multibox.options.overlayOpacity}
 			if.negate = 1
@@ -64,24 +64,24 @@ temp.options {
 	}
 	80 = TEXT
 	80 {
-		value = showNumbers: 'false',
+		value = showNumbers: false,
 		if.isFalse = {$plugin.ju_multibox.options.showNumbers}
 	}
 	90 = TEXT
 	90 {
-		value = showControls: 'false',
+		value = showControls: false,
 		if.isFalse = {$plugin.ju_multibox.options.showControls}
 	}
 	100 = TEXT
 	100 {
-		value = movieWidth: '{$plugin.ju_multibox.options.movieWidth}',
+		value = movieWidth: {$plugin.ju_multibox.options.movieWidth},
 		if.equals = 700
 		if.value = {$plugin.ju_multibox.options.movieWidth}
 		if.negate = 1
 	}
 	110 = TEXT
 	110 {
-		value = movieHeight: '{$plugin.ju_multibox.options.movieHeight}',
+		value = movieHeight: {$plugin.ju_multibox.options.movieHeight},
 		if.equals = 500
 		if.value = {$plugin.ju_multibox.options.movieHeight}
 		if.negate = 1
@@ -105,7 +105,7 @@ temp.options {
 	}
 	130 = TEXT
 	130 {
-		value = fixedTop: '{$plugin.ju_multibox.options.fixedTop}',
+		value = fixedTop: true,
 		if.isTrue = {$plugin.ju_multibox.options.fixedTop}
 	}
 	140 = TEXT
@@ -120,21 +120,21 @@ temp.options {
 	}
 	150 = TEXT
 	150 {
-		value = onOpen: '{$plugin.ju_multibox.options.onOpen}',
+		value = onOpen: {$plugin.ju_multibox.options.onOpen},
 		if.equals = Class.empty
 		if.value = {$plugin.ju_multibox.options.onOpen}
 		if.negate = 1
 	}
 	160 = TEXT
 	160 {
-		value = onOpen: '{$plugin.ju_multibox.options.onClose}',
+		value = onOpen: {$plugin.ju_multibox.options.onClose},
 		if.equals = Class.empty
 		if.value = {$plugin.ju_multibox.options.onClose}
 		if.negate = 1
 	}
 	170 = TEXT
 	170 {
-		value = openFromLink: 'false',
+		value = openFromLink: false,
 		if.isFalse = {$plugin.ju_multibox.options.openFromLink}
 	}
 	500 = TEXT
